@@ -14,20 +14,20 @@ public class SolvingQuestionsWithBrainpower {
      */
     public static long mostPoints(int[][] questions) {
         int n = questions.length;
-        long[] awnserValues = new long[n + 1];
+        long[] answerValues = new long[n + 1];
 
         for (int i = 0; i < n; i++) { // O(n)
-            awnserValues[i + 1] = Math.max(awnserValues[i + 1], awnserValues[i]);
+            answerValues[i + 1] = Math.max(answerValues[i + 1], answerValues[i]);
 
             int next = i + questions[i][1] + 1;
             if (next <= n) {
-                awnserValues[next] = Math.max(awnserValues[next], awnserValues[i] + questions[i][0]);
+                answerValues[next] = Math.max(answerValues[next], answerValues[i] + questions[i][0]);
             } else {
-                awnserValues[n] = Math.max(awnserValues[n], awnserValues[i] + questions[i][0]);
+                answerValues[n] = Math.max(answerValues[n], answerValues[i] + questions[i][0]);
             }
         }
 
-        return awnserValues[n];
+        return answerValues[n];
     }
 
     // ===== TEST CASES =====

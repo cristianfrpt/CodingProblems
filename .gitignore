@@ -1,0 +1,37 @@
+# Diretórios de IDE
+.idea/
+*.iml
+out/
+venv/
+
+# Arquivos específicos do IntelliJ
+*.ipr
+*.iws
+*.ids
+*.orig
+
+# Diretórios de ambiente virtual Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de cache e log
+*.log
+*.pot
+*.pyc
+*.pyo
+
+# Diretórios de build/distribuição
+build/
+dist/
+*.egg-info/
+
+# Arquivos de configuração local
+*.env
+*.venv
+env/
+ENV/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
