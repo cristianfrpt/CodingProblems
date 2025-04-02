@@ -8,8 +8,10 @@ public class MaximumValueOfAnOrderedTriplet {
         Precisamos encontrar o valor máximo da expressão (nums[i]-nums[j])*nums[k] sendo que i < j < k.
         n = nums.length
         Time:  O(n^3)
-        Space: O(n)
+        Space: O(1)
      */
+
+    /*
     public static int maximumTripletValue(int[] nums) {
         int n = nums.length;
         if(n < 3) return 0;
@@ -26,6 +28,37 @@ public class MaximumValueOfAnOrderedTriplet {
         }
 
         return maxTriplet;
+    }
+    */
+
+    /*
+        Otimização:
+        Repare que ao percorrer nums[] e computar na ordem resultado > diferençaMaxima > iMaximo a regra (i > j > k)
+            é respeitada, visto que:
+            - O calculo do resultado esta em t+2 pois depende diffMaxima de t+1, porém usa até num[n] como k
+            - O calculo da diferença (num[i] - num[j]) está em t+1 pois depende de iMaximo de t
+            - O calculo de iMaximo é obtido em t, usa valores de [0..t] onde t = n
+
+        É um jogo de dependencias, onde a dependencias dos calculos respeitam a regra.
+
+        n = nums.length
+        Time:  O(n)
+        Space: O(1)
+    */
+    public static long maximumTripletValue(int[] nums) {
+        int n = nums.length;
+        if(n < 3) return 0;
+
+        long resultadoMaximo = 0;
+        int iMaximo = 0, diffMaximo = 0;
+
+        for (int num : nums){
+            resultadoMaximo = Math.max(resultadoMaximo, (long) diffMaximo * num);
+            diffMaximo = Math.max(diffMaximo, iMaximo - num);
+            iMaximo = Math.max(iMaximo, num);
+        }
+
+        return  resultadoMaximo;
     }
 
     // ===== TEST CASES =====
@@ -55,7 +88,7 @@ public class MaximumValueOfAnOrderedTriplet {
                         Arrays.toString(nums));
 
         long start = System.nanoTime();
-        int result = maximumTripletValue(nums);
+        long result = maximumTripletValue(nums);
         long duration = (System.nanoTime() - start) / 1000;
 
         System.out.printf("Expected: %d%nResult: %d%n", expected, result);

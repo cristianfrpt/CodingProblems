@@ -6,7 +6,7 @@ from typing import List
     
     n = nums.length
     Time:  O(n^3)
-    Space: O(n)
+    Space: O(1)
 '''
 
 def main() -> None:
@@ -34,17 +34,30 @@ def test_case(nums: List[int], expected: int, test_id: int) -> None:
     print(f"Time: {elapsed_time / 1000:.3f} μs")
     print("✅ PASS" if result == expected else "❌ FAIL")
 
+'''
+    Otimização:
+    Repare que ao percorrer nums[] e computar na ordem res > dmax > imax a regra (i > j > k) é respeitada, visto que:
+    
+    - O calculo res está em t+2 pois depende diffMaxima de t+1, entretanto usa até num[n] como k
+    - O calculo dmax (num[i] - num[j]) está em t+1 pois depende de imax de t
+    - O imax é obtido em t, usa valores de [0..t] onde t = n
+    
+    É um jogo de dependencias, onde a dependencias dos calculos respeitam a regra.
+    
+    n = nums.length
+    Time:  O(n)
+    Space: O(1)
+'''
 
 def maximumTripletValue(nums: List[int]) -> int:
-    n = len(nums)
-    maxTriplet = 0
+    res = imax = dmax = 0
 
-    for i in range(n - 2):
-        for j in range(i + 1, n - 1):
-            for k in range(j + 1, n):
-                maxTriplet = max(maxTriplet, (nums[i] - nums[j]) * nums[k])
+    for num in nums:
+        res = max(res, dmax * num)
+        dmax = max(dmax, (imax - num))
+        imax = max(imax, num)
 
-    return maxTriplet
+    return res
 
 
 if __name__ == "__main__":
