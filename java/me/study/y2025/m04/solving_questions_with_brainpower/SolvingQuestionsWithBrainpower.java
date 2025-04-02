@@ -1,3 +1,5 @@
+package me.study.y2025.m04.solving_questions_with_brainpower;
+
 import java.util.Arrays;
 
 public class SolvingQuestionsWithBrainpower {

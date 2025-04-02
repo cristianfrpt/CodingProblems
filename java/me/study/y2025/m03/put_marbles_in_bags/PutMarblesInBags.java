@@ -1,3 +1,5 @@
+package me.study.y2025.m03.put_marbles_in_bags;
+
 import java.util.Arrays;
 
 public class PutMarblesInBags {

@@ -1,3 +1,5 @@
+package me.study.y2025.m03.partition_labels;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
