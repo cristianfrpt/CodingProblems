@@ -1,4 +1,4 @@
-package me.study.y2025.m04.maximum_value_of_an_ordered_triplet_ii.maximum_value_of_an_ordered_triplet;
+package me.study.y2025.m04.maximum_value_of_an_ordered_triplet_ii;
 
 import java.util.Arrays;
 
